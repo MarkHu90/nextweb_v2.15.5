@@ -105,11 +105,11 @@ const sdCommonParams = (model: string, data: any) => {
 };
 
 export const models = [
-  {
-    name: "Stable Image Ultra",
-    value: "ultra",
-    params: (data: any) => sdCommonParams("ultra", data),
-  },
+  // {
+  //   name: "Stable Image Ultra",
+  //   value: "ultra",
+  //   params: (data: any) => sdCommonParams("ultra", data),
+  // },
   {
     name: "Stable Image Core",
     value: "core",

@@ -36,6 +36,7 @@ import { removeImage } from "@/app/utils/chat";
 import { SideBar } from "./sd-sidebar";
 import { WindowContent } from "@/app/components/home";
 import { params } from "./sd-panel";
+import Image from "next/image";
 
 function getSdTaskStatus(item: any) {
   let s: string;
@@ -100,7 +101,7 @@ export function Sd() {
 
   useEffect(() => {
     setSdImages(sdStore.draw);
-  }, [sdStore.currentId]);
+  }, [sdStore.currentId, sdStore.draw]);
 
   return (
     <>
@@ -158,7 +159,7 @@ export function Sd() {
                       className={styles["sd-img-item"]}
                     >
                       {item.status === "success" ? (
-                        <img
+                        <Image
                           className={styles["img"]}
                           src={item.img_data}
                           alt={item.id}

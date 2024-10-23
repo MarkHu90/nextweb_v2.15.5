@@ -97,9 +97,12 @@ function getApiKey(keys?: string) {
   const apiKey = apiKeys[randomIndex];
   if (apiKey) {
     console.log(
-      `[Server Config] using ${randomIndex + 1} of ${
-        apiKeys.length
-      } api key - ${apiKey}`,
+      // `[Server Config] using ${randomIndex + 1} of ${
+      //   apiKeys.length
+      // } api key - ${apiKey}`,
+
+      //don't show api key
+      `[Server Config] using ${randomIndex + 1} of ${apiKeys.length} api key`,
     );
   }
 

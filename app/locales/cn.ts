@@ -571,6 +571,9 @@ const cn = {
   Discovery: {
     Name: "发现",
   },
+  Plugins: {
+    SD: "Stable Diffusion",
+  },
   FineTuned: {
     Sysmessage: "你是一个助手",
   },
@@ -767,6 +770,33 @@ const cn = {
     },
     GenerateParams: "生成参数",
     Detail: "详情",
+  },
+  LoginPage: {
+    Title: "登录",
+    SubTitle: "登录后可跟AI交流",
+    Username: {
+      Title: "用户名",
+      SubTitle: "",
+      Placeholder: "请输入用户邮箱",
+    },
+    Password: {
+      Title: "密码",
+      SubTitle: "",
+      Placeholder: "请输入密码",
+    },
+    Actions: {
+      Close: "关闭",
+      Login: "登录",
+      Logout: "退出登录",
+    },
+    Toast: {
+      Success: "登录成功",
+      Logining: "登录中……",
+      EmptyUserName: "用户名不能为空",
+      EmptyPassword: "密码不能为空",
+    },
+    GoToRegister: "前往注册",
+    ForgetPassword: "忘记/重置密码",
   },
 };
 

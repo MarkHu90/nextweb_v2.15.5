@@ -580,6 +580,9 @@ const en: LocaleType = {
   Discovery: {
     Name: "Discovery",
   },
+  Plugins: {
+    SD: "Stable Diffusion",
+  },
   FineTuned: {
     Sysmessage: "You are an assistant that",
   },
@@ -777,6 +780,33 @@ const en: LocaleType = {
     },
     GenerateParams: "Generate Params",
     Detail: "Detail",
+  },
+  LoginPage: {
+    Title: "Login",
+    SubTitle: "Chat with AI",
+    Username: {
+      Title: "User Name:",
+      SubTitle: "",
+      Placeholder: "Please input your email address",
+    },
+    Password: {
+      Title: "Password:",
+      SubTitle: "",
+      Placeholder: "Please input your password",
+    },
+    Actions: {
+      Close: "Close",
+      Login: "Login",
+      Logout: "Logout",
+    },
+    Toast: {
+      Success: "Login successfully",
+      Logining: "Loading...",
+      EmptyUserName: "Username cannot be empty",
+      EmptyPassword: "Password cannot be empty",
+    },
+    GoToRegister: "Go to register",
+    ForgetPassword: "Forget/Reset Password",
   },
 };
 

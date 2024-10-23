@@ -30,6 +30,9 @@ import { getClientConfig } from "../config/client";
 import { type ClientApi, getClientApi } from "../client/api";
 import { useAccessStore } from "../store";
 
+import { Login } from "./login";
+import { useSession } from "next-auth/react";
+
 export function Loading(props: { noLogo?: boolean }) {
   return (
     <div className={styles["loading-content"] + " no-dark"}>
@@ -166,6 +169,8 @@ function Screen() {
     loadAsyncGoogleFont();
   }, []);
 
+  const { data: session } = useSession();
+
   if (isArtifact) {
     return (
       <Routes>
@@ -195,15 +200,19 @@ function Screen() {
     );
   };
 
-  return (
-    <div
-      className={`${styles.container} ${
-        shouldTightBorder ? styles["tight-container"] : styles.container
-      } ${getLang() === "ar" ? styles["rtl-screen"] : ""}`}
-    >
-      {renderContent()}
-    </div>
-  );
+  if (session && session.user) {
+    return (
+      <div
+        className={`${styles.container} ${
+          shouldTightBorder ? styles["tight-container"] : styles.container
+        } ${getLang() === "ar" ? styles["rtl-screen"] : ""}`}
+      >
+        {renderContent()}
+      </div>
+    );
+  } else {
+    return <Login />;
+  }
 }
 
 export function useLoadData() {
