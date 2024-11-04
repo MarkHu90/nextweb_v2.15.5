@@ -9,7 +9,7 @@ import ConfirmIcon from "../icons/confirm.svg";
 import CancelIcon from "../icons/cancel.svg";
 import MaxIcon from "../icons/max.svg";
 import MinIcon from "../icons/min.svg";
-
+import DownloadIcon from "../icons/download.svg";
 import Locale from "../locales";
 
 import { createRoot } from "react-dom/client";
@@ -457,8 +457,30 @@ export function showImageModal(
   style?: CSSProperties,
   boxStyle?: CSSProperties,
 ) {
+  const download = async () => {
+    console.log("download");
+
+    const cache = await caches.open("chatgpt-next-web-file");
+    const cachedResponse = await cache.match(img);
+
+    if (cachedResponse) {
+      const blob = await cachedResponse.blob();
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "image.png"; // 设置下载文件名
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } else {
+      console.error("Image not found in cache.");
+    }
+  };
+
   showModal({
-    title: Locale.Export.Image.Modal,
+    title: Locale.Export.Image.Title,
     defaultMax: defaultMax,
     children: (
       <div style={{ display: "flex", justifyContent: "center", ...boxStyle }}>
@@ -473,6 +495,16 @@ export function showImageModal(
         ></img>
       </div>
     ),
+    actions: [
+      <IconButton
+        key="download"
+        text={Locale.Export.Download}
+        onClick={download}
+        icon={<DownloadIcon />}
+        bordered
+        shadow
+      ></IconButton>,
+    ],
   });
 }
 

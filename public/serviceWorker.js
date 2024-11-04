@@ -50,7 +50,29 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
   if (/^\/api\/cache/.test(url.pathname)) {
     if ('GET' == e.request.method) {
-      e.respondWith(caches.match(e.request))
+      //e.respondWith(caches.match(e.request))
+      e.respondWith(
+        caches.match(e.request)
+            .then((response) => {
+                // 如果缓存中有匹配的响应，则返回缓存的响应
+                if (response) {
+                    return response;
+                }
+    
+                // 否则，进行网络请求
+                return fetch(e.request).then((networkResponse) => {
+                    // 这里可以选择将网络响应缓存
+                    return caches.open(CHATGPT_NEXT_WEB_FILE_CACHE).then((cache) => {
+                        cache.put(e.request, networkResponse.clone());
+                        return networkResponse;
+                    });
+                });
+            })
+            .catch((error) => {
+                console.error('Fetching failed:', error);
+                throw error; // 处理错误
+            })
+      );
     }
     if ('POST' == e.request.method) {
       e.respondWith(upload(e.request, url))

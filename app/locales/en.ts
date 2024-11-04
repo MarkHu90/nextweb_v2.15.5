@@ -131,6 +131,7 @@ const en: LocaleType = {
     Image: {
       Toast: "Capturing Image...",
       Modal: "Long press or right click to save image",
+      Title: "Click the button in the bottom right corner to download",
     },
     Artifacts: {
       Title: "Share Artifacts",

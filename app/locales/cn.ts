@@ -130,6 +130,7 @@ const cn = {
     Image: {
       Toast: "正在生成截图",
       Modal: "长按或右键保存图片",
+      Title: "点击右下角按钮下载图片",
     },
     Artifacts: {
       Title: "分享页面",
