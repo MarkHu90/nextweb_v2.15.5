@@ -26,6 +26,7 @@ import { useSdStore } from "@/app/store/sd";
 import LoadingIcon from "@/app/icons/three-dots.svg";
 import ErrorIcon from "@/app/icons/delete.svg";
 import SDIcon from "@/app/icons/sd.svg";
+import DownloadIcon from "@/app/icons/download.svg";
 import { Property } from "csstype";
 import {
   showConfirm,
@@ -36,7 +37,6 @@ import { removeImage } from "@/app/utils/chat";
 import { SideBar } from "./sd-sidebar";
 import { WindowContent } from "@/app/components/home";
 import { params } from "./sd-panel";
-import Image from "next/image";
 
 function getSdTaskStatus(item: any) {
   let s: string;
@@ -159,7 +159,7 @@ export function Sd() {
                       className={styles["sd-img-item"]}
                     >
                       {item.status === "success" ? (
-                        <Image
+                        <img
                           className={styles["img"]}
                           src={item.img_data}
                           alt={item.id}
@@ -317,6 +317,20 @@ export function Sd() {
                                     sdStore.getNextId();
                                   });
                                 }
+                              }}
+                            />
+                            <ChatAction
+                              text={Locale.Export.Download}
+                              icon={<DownloadIcon />}
+                              onClick={async () => {
+                                const res = await fetch(item.img_data);
+                                const blob = await res.blob();
+                                const url = window.URL.createObjectURL(blob);
+                                const a = document.createElement("a");
+                                a.href = url;
+                                a.download = `${item.id}.png`;
+                                a.click();
+                                window.URL.revokeObjectURL(url);
                               }}
                             />
                           </div>

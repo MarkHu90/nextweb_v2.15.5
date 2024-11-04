@@ -6,7 +6,7 @@ import { Path, SAAS_CHAT_URL } from "../constant";
 import { useAccessStore } from "../store";
 import Locale from "../locales";
 import Delete from "../icons/close.svg";
-import Arrow from "../icons/arrow.svg";
+// import Arrow from "../icons/arrow.svg";
 import Logo from "../icons/logo.svg";
 import { useMobileScreen } from "@/app/utils";
 import BotIcon from "../icons/bot.svg";
@@ -15,7 +15,7 @@ import { PasswordInput } from "./ui-lib";
 import LeftIcon from "@/app/icons/left.svg";
 import { safeLocalStorage } from "@/app/utils";
 import {
-  trackSettingsPageGuideToCPaymentClick,
+  //trackSettingsPageGuideToCPaymentClick,
   trackAuthorizationPageButtonToCPaymentClick,
 } from "../utils/auth-settings-events";
 const storage = safeLocalStorage();
@@ -113,12 +113,12 @@ export function AuthPage() {
           type="primary"
           onClick={goChat}
         />
-        <IconButton
+        {/* <IconButton
           text={Locale.Auth.SaasTips}
           onClick={() => {
             goSaas();
           }}
-        />
+        /> */}
       </div>
     </div>
   );
@@ -165,7 +165,7 @@ function TopBanner() {
     >
       <div className={`${styles["top-banner-inner"]} no-dark`}>
         <Logo className={styles["top-banner-logo"]}></Logo>
-        <span>
+        {/* <span>
           {Locale.Auth.TopTips}
           <a
             href={SAAS_CHAT_URL}
@@ -177,7 +177,7 @@ function TopBanner() {
             {Locale.Settings.Access.SaasStart.ChatNow}
             <Arrow style={{ marginLeft: "4px" }} />
           </a>
-        </span>
+        </span> */}
       </div>
       {(isHovered || isMobile) && (
         <Delete className={styles["top-banner-close"]} onClick={handleClose} />
